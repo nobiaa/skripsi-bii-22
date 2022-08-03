@@ -46,7 +46,9 @@ class Auth extends CI_Controller
                     $this->session->set_userdata($data);
                     if ($user['role_id'] == 1) {
                         redirect('admin');
-                    } else if ($user['role_id']     == 2) {
+                    } else if ($user['role_id'] == 2) {
+                        redirect('guru');
+                    } else if ($user['role_id'] == 3) {
                         redirect('user');
                     }
                 } else {
@@ -65,10 +67,14 @@ class Auth extends CI_Controller
 
     public function registration()
     {
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'is_unique' => 'This email has already registered!'
         ]);
+        $this->form_validation->set_rules('no_induk', 'No_induk', 'required|trim');
+        $this->form_validation->set_rules('no_hp', 'No_hp', 'required|trim');
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
             'matches' => 'Password dont much!',
             'min_length' => 'Password too short'
@@ -77,7 +83,7 @@ class Auth extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = "SKRIPSI User Registration";
+            $data['title'] = "Registration";
             $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/registration');
             $this->load->view('templates/auth_footer');
@@ -87,7 +93,9 @@ class Auth extends CI_Controller
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'image' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'role_id' => 1,
+                'no_induk' => htmlspecialchars($this->input->post('no_induk', true)),
+                'no_hp' => htmlspecialchars($this->input->post('no_hp', true)),
+                'role_id' => htmlspecialchars($this->input->post('role_id', true)),
                 'is_active' => 1,
                 'data_created' => time()
 

@@ -19,38 +19,122 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    <?php if ($user['role_id'] == 1) { ?>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Administrator
+        </div>
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Administrator
-    </div>
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <!-- Nav Item - Dashboard -->
+        <?php if ($tittle == "Halaman Admin") {
+            echo "<li class='nav-item active'>";
+        } else {
+            echo "<li class='nav-item'>";
+        } ?>
+        <a class="nav-link" href="<?= base_url('admin/index'); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
-    </li>
+        </li>
+        <?php if ($tittle == "Data Guru") {
+            echo "<li class='nav-item active'>";
+        } else {
+            echo "<li class='nav-item'>";
+        } ?>
+        <a class="nav-link" href="<?= base_url('admin/dataguru'); ?>">
+            <i class="fas fa-fw fa-database"></i>
+            <span>Data Guru</span></a>
+        </li>
+        <?php if ($tittle == "Data Siswa") {
+            echo "<li class='nav-item active'>";
+        } else {
+            echo "<li class='nav-item'>";
+        } ?>
+        <a class="nav-link" href="<?= base_url('admin/datasiswa'); ?>">
+            <i class="fas fa-fw fa-database"></i>
+            <span>Data Siswa</span></a>
+        </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        User
-    </div>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            User
+        </div>
 
-    <li class="nav-item">
-        <a class="nav-link" href="#">
+        <?php if ($tittle == "My Profile") {
+            echo "<li class='nav-item active'>";
+        } else {
+            echo "<li class='nav-item'>";
+        } ?>
+        <a class="nav-link" href="<?= base_url('admin/myprofile'); ?>">
             <i class="fas fa-fw  fa-user"></i>
             <span>My Profile</span></a>
-    </li>
+        </li>
 
-    <li class="nav-item">
+        <?php if ($tittle == "Registration") {
+            echo "<li class='nav-item active'>";
+        } else {
+            echo "<li class='nav-item'>";
+        } ?>
         <a class="nav-link" href="<?= base_url('auth/registration'); ?>">
             <i class="fas fa-fw  fa-id-card"></i>
             <span>Registration</span></a>
-    </li>
+        </li>
+
+    <?php } else if ($user['role_id'] == 2) { ?>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Administrator
+        </div>
+
+        <!-- Nav Item - Dashboard -->
+        <?php if ($tittle == "Halaman Guru") {
+            echo "<li class='nav-item active'>";
+        } else {
+            echo "<li class='nav-item'>";
+        } ?>
+        <a class="nav-link" href="<?= base_url('guru/index'); ?>">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+        </li>
+        <?php if ($tittle == "Data Siswa") {
+            echo "<li class='nav-item active'>";
+        } else {
+            echo "<li class='nav-item'>";
+        } ?>
+        <a class="nav-link" href="<?= base_url('admin/datasiswa'); ?>">
+            <i class="fas fa-fw fa-database"></i>
+            <span>Data Siswa</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            User
+        </div>
+        <?php if ($tittle == "My Profile") {
+            echo "<li class='nav-item active'>";
+        } else {
+            echo "<li class='nav-item'>";
+        } ?>
+        <a class="nav-link" href="<?= base_url('admin/myprofile'); ?>">
+            <i class="fas fa-fw  fa-user"></i>
+            <span>My Profile</span></a>
+        </li>
+
+        <?php if ($tittle == "Registration") {
+            echo "<li class='nav-item active'>";
+        } else {
+            echo "<li class='nav-item'>";
+        } ?>
+        <a class="nav-link" href="<?= base_url('auth/registration'); ?>">
+            <i class="fas fa-fw  fa-id-card"></i>
+            <span>Registration</span></a>
+        </li>
+    <?php } ?>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
